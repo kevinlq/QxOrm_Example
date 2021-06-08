@@ -25,12 +25,12 @@ bool QDaoBase::initDataBase(const QString &strJsonInfo)
         return false;
     }
 
-    QString strDataBaseType = map.value ("strDatabaseType").toString ();
-    QString strHostName = map.value ("strHostName").toString ();
-    int nPort = map.value ("nPort").toInt ();
-    QString strUserName = map.value ("strUserName").toString ();
-    QString strPwd = map.value ("strPwd").toString ();
-    QString strDataBaseName = map.value ("strDatabaseName").toString ();
+    QString strDataBaseType     = map.value ("strDatabaseType").toString ();
+    QString strHostName         = map.value ("strHostName").toString ();
+    int nPort                   = map.value ("nPort").toInt ();
+    QString strUserName         = map.value ("strUserName").toString ();
+    QString strPwd              = map.value ("strPwd").toString ();
+    QString strDataBaseName     = map.value ("strDatabaseName").toString ();
 
     QDAOHELP->initDataBase(strDataBaseType, strHostName, nPort, strUserName, strPwd, strDataBaseName);
 

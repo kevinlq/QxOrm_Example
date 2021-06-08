@@ -45,6 +45,13 @@ public:
         return qx::dao::delete_by_id(t, pDatabase);
     }
 
+    template<class T >
+    QSqlError fetch_by_query(QString sql, T &t, QSqlDatabase *pDatabase = nullptr)
+    {
+        qx::QxSqlQuery query(sql);
+        return qx::dao::fetch_by_query(query, t, pDatabase);
+    }
+
 protected:
     QString m_driverName    = "";
     QString m_hostName      = "";

@@ -13,6 +13,8 @@ public:
     static bool initTable();
 
     static bool insertInfo(QPhoneVo* pInfo);
+
+    static bool getInfo(long id, QPhoneVo* pInfo);
 };
 
 #endif // QPHONEDAO_H

@@ -1,2 +1,70 @@
 # QxOrm_Example
-som QxOrm demo
+`QxOrm` 常见用法总结
+
+## 编译说明
+
+`3rdparty` 目录是 `QxOrm`动态库和头文件，动态库需要自己编译，我上传的是 `Qt 5.7 Mingw 5.3`编译的
+
+现在编译 `QxOrm` 库非常容易，新的版本完全脱离了 `boost`的限制，几分钟就可以编译完成
+
+
+ ## 使用说明
+ 
+- 数据库初始化
+
+传入 JSON 格式参数即可，内部自己进行了封装
+```
+     QString strDataBaseType     = map.value ("strDatabaseType").toString ();
+    QString strHostName         = map.value ("strHostName").toString ();
+    int nPort                   = map.value ("nPort").toInt ();
+    QString strUserName         = map.value ("strUserName").toString ();
+    QString strPwd              = map.value ("strPwd").toString ();
+    QString strDataBaseName     = map.value ("strDatabaseName").toString ();
+```
+
+目前测试了 `QSQLITE`,`QMYSQL` 数据库均可以正常使用，其它数据库后续测试完再补充
+
+- 创建数据表
+
+```
+    template<class T >
+    QSqlError createTable(QSqlDatabase * pDatabase = nullptr)
+    {
+        Q_UNUSED(pDatabase);
+        return qx::dao::create_table<T>();
+    }
+```
+
+- 插入数据
+
+```
+    template<class T>
+    QSqlError insert(T &t,QSqlDatabase *pDatabase = nullptr)
+    {
+        return qx::dao::insert(t, pDatabase);
+    }
+```
+
+其它操作类似，详细封装可以看这个类 `QDaoHelpBase`
+
+```
+    QPhoneVo phone;
+    phone.m_lID = 1;
+    phone.m_strName = "xiao mi";
+
+    QPhoneDao::insertInfo(&phone);
+```
+
+## 感谢
+
+在此感谢 `QxOrm` 开源的付出
+
+## 更多内容
+
+如果想阅读了解更多内容，欢迎关注微信公众号：devstone
+
+![thanks](https://github.com/kevinlq/LQFramKit/blob/master/screen/qrcode_for_devstone.png)
+
+
+
+
